@@ -2,18 +2,32 @@
 <html>
 <head>
 	<title>Excel Uploading PHP</title>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+      body{
+            background-image: url("img/background.jpg");
+      }
+      h1{
+            color: white;
+            text-align: center;
+      }
+      .head{
+            color:white;
+            text-align: center;
+      }
+      .jumbotron{
+            margin-top:200px;
+      }
+</style>
 </head>
 <body>
 
 
-<div class="container">
+<div class="jumbotron bg-transparent container">
 	<h1>Excel Upload</h1>
-
-
 	<form method="POST" action="upload_course.php" enctype="multipart/form-data">
 		<div class="form-group">
-			<label>Upload Excel File</label>
+			<label class="head">Upload Excel File</label>
 			<input type="file" name="file" class="form-control">
 		</div>
 		<div class="form-group">
@@ -60,16 +74,20 @@ if (isset($_POST['submit']))
                   }
             
             if(isset($msg)){
-                  echo "Row inserted";
+                  echo '<script type="text/JavaScript"> 
+                            alert("File uploaded successfully!");
+                            </script>';
             }
             else {
-                  echo "Row not inserted";
+                  echo '<script type="text/JavaScript"> 
+                  alert("File not uploaded successfully!");
+                  </script>';
             }
       }
       else {
             
-            header('Location:act.html');
-            exit(0);
+            //header('Location:act.html');
+            //exit(0);
       }
 }
 ?>
