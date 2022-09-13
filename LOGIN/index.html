@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login/SignUp</title>
+      <link rel="stylesheet" href="style.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4e1e0e24e3.js" crossorigin="anonymous"></script>
+   </head>
+   <body>
+     <h3 style="text-align:right;">The hiring <i class="fa-solid fa-flask-vial"></i></h3>
+      <div class="wrapper">
+         <div class="title-text">
+            <div class="title login">
+               Login Form
+            </div>
+            <div class="title signup">
+               Signup Form
+            </div>
+         </div>
+         <div class="slide-controls-error" id="error-slide">
+           <label class="error" id="error-display"></label>
+         </div>
+         <div class="slide-controls-success" id="success-slide">
+           <label class="success" id="success-display"></label>
+         </div>
+
+         <div class="form-container">
+            <div class="slide-controls">
+               <input type="radio" name="slide" id="login" checked>
+               <input type="radio" name="slide" id="signup">
+               <label for="login" class="slide login">Login</label>
+               <label for="signup" class="slide signup">Join Now</label>
+               <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+               <form action="#" class="login" onsubmit="return login_form_submission()">
+                  <div class="field">
+                     <input type="email" id="login-email" placeholder="Email Address" required>
+                  </div>
+                  <div class="field">
+                     <input type="password" placeholder="Password" required>
+                  </div>
+                  <div class="pass-link">
+                     <a href="#">Forgot password?</a>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input id="loginpress" type="submit" value="Login">
+                  </div>
+                  <div class="signup-link">
+                     Not a member? <a href="">Join now</a>
+                  </div>
+               </form>
+               <form action="#" class="signup" onsubmit="return validate_signup()">
+                  <div class="field">
+                     <input id="signupemail" type="email" placeholder="Email Address"  required>
+                  </div>
+                  <div class="field">
+                     <input id="pass1" type="password" name="signuppass1" placeholder="Password"  required>
+                  </div>
+                  <div class="field">
+                     <input id="pass2" type="password" name="signuppass2" placeholder="Confirm password"   required>
+                  </div>
+                  <div class="field btn">
+                     <div class="btn-layer"></div>
+                     <input type="submit" value="Join">
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+      <script>
+         const loginText = document.querySelector(".title-text .login");
+         const loginForm = document.querySelector("form.login");
+         const loginBtn = document.querySelector("label.login");
+         const signupBtn = document.querySelector("label.signup");
+         const signupLink = document.querySelector("form .signup-link a");
+
+         signupBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "-50%";
+           loginText.style.marginLeft = "-50%";
+         });
+         loginBtn.onclick = (()=>{
+           loginForm.style.marginLeft = "0%";
+           loginText.style.marginLeft = "0%";
+         });
+         signupLink.onclick = (()=>{
+           signupBtn.click();
+           return false;
+         });
+
+         function login_form_submission()
+         {
+             const email=document.getElementById('login-email').value;
+
+             if(email=='naghaakshayaa@gmail.com')
+             {
+
+             }
+             else {
+               document.getElementById("error-display").innerText = "Email ID is incorrect";
+               $("#error-slide").css("display", "block");
+               return false;
+             }
+           }
+
+           function validate_signup()
+           {
+               $("#error-slide").css("display", "none");
+               $("#success-slide").css("display", "none");
+
+              const email=document.getElementById('signupemail').value;
+              const pass1=document.getElementById('pass1').value;
+              const pass2=document.getElementById('pass2').value;
+
+              if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)!=true)
+              {
+                document.getElementById("error-display").innerText = "Enter a valid EMAIL Id";
+                $("#error-slide").css("display", "block");
+                return (false)
+              }
+              if(pass1.length<=8 || pass1.length>=20)
+              {
+                document.getElementById("error-display").innerText = "Password must be between 8 to 20 letters";
+                $("#error-slide").css("display", "block");
+                return (false)
+              }
+              if(/^[a-zA-Z]+$/.test(pass1))
+              {
+                document.getElementById("error-display").innerText = "Password must have atleast one number";
+                $("#error-slide").css("display", "block");
+                return (false)
+              }
+              if(/^[a-z0-9]+$/.test(pass1))
+              {
+                document.getElementById("error-display").innerText = "Password must have atleast one uppercase";
+                $("#error-slide").css("display", "block");
+                return (false)
+              }
+              if(pass1!=pass2)
+              {
+                document.getElementById("error-display").innerText = "Password entered doesn't match";
+                $("#error-slide").css("display", "block");
+                return (false)
+              }
+              document.getElementById("success-display").innerText = "Account created. Log in now !!";
+              $("#success-slide").css("display", "block");
+              loginBtn.click();
+               return false;
+             }
+
+      </script>
+   </body>
+</html>
