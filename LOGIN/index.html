@@ -2,20 +2,19 @@
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title>Login/SignUp</title>
+      <title>Login Page</title>
       <link rel="stylesheet" href="style.css">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/4e1e0e24e3.js" crossorigin="anonymous"></script>
    </head>
    <body>
-     <h3 style="text-align:right;">The hiring <i class="fa-solid fa-flask-vial"></i></h3>
       <div class="wrapper">
          <div class="title-text">
             <div class="title login">
-               Login Form
+               User Login
             </div>
             <div class="title signup">
-               Signup Form
+               Admin Login
             </div>
          </div>
          <div class="slide-controls-error" id="error-slide">
@@ -29,42 +28,33 @@
             <div class="slide-controls">
                <input type="radio" name="slide" id="login" checked>
                <input type="radio" name="slide" id="signup">
-               <label for="login" class="slide login">Login</label>
-               <label for="signup" class="slide signup">Join Now</label>
+               <label for="login" class="slide login">User</label>
+               <label for="signup" class="slide signup">Admin</label>
                <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
                <form action="#" class="login" onsubmit="return login_form_submission()">
                   <div class="field">
-                     <input type="email" id="login-email" placeholder="Email Address" required>
+                     <input type="text" id="user_ID" placeholder="Employee ID" required>
                   </div>
                   <div class="field">
-                     <input type="password" placeholder="Password" required>
-                  </div>
-                  <div class="pass-link">
-                     <a href="#">Forgot password?</a>
+                     <input type="password" id="user_password" placeholder="Password" required>
                   </div>
                   <div class="field btn">
                      <div class="btn-layer"></div>
                      <input id="loginpress" type="submit" value="Login">
                   </div>
-                  <div class="signup-link">
-                     Not a member? <a href="">Join now</a>
-                  </div>
                </form>
-               <form action="#" class="signup" onsubmit="return validate_signup()">
+               <form action="#" class="signup" onsubmit="return validate_admin()">
                   <div class="field">
-                     <input id="signupemail" type="email" placeholder="Email Address"  required>
+                     <input id="admin_id" type="text" placeholder="Admin ID"  required>
                   </div>
                   <div class="field">
-                     <input id="pass1" type="password" name="signuppass1" placeholder="Password"  required>
-                  </div>
-                  <div class="field">
-                     <input id="pass2" type="password" name="signuppass2" placeholder="Confirm password"   required>
+                     <input id="admin_password" type="password" name="admin_password" placeholder="Password"  required>
                   </div>
                   <div class="field btn">
                      <div class="btn-layer"></div>
-                     <input type="submit" value="Join">
+                     <input type="submit" value="Login">
                   </div>
                </form>
             </div>
@@ -93,62 +83,33 @@
 
          function login_form_submission()
          {
-             const email=document.getElementById('login-email').value;
+             const empid=document.getElementById('user_ID').value;
 
-             if(email=='naghaakshayaa@gmail.com')
+             if(empid=='1')
              {
-
+               alert("hii you are inside")
              }
              else {
-               document.getElementById("error-display").innerText = "Email ID is incorrect";
+               document.getElementById("error-display").innerText = "User ID is incorrect";
                $("#error-slide").css("display", "block");
                return false;
              }
            }
 
-           function validate_signup()
+           function validate_admin()
            {
-               $("#error-slide").css("display", "none");
-               $("#success-slide").css("display", "none");
+              const admin_id=document.getElementById('admin_id').value;
+              if(admin_id=='1')
+              {
+                alert("hii you are inside")
+              }
+              else {
+                document.getElementById("error-display").innerText = "Admin ID is incorrect";
+                $("#error-slide").css("display", "block");
+                return false;
+              }
 
-              const email=document.getElementById('signupemail').value;
-              const pass1=document.getElementById('pass1').value;
-              const pass2=document.getElementById('pass2').value;
 
-              if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)!=true)
-              {
-                document.getElementById("error-display").innerText = "Enter a valid EMAIL Id";
-                $("#error-slide").css("display", "block");
-                return (false)
-              }
-              if(pass1.length<=8 || pass1.length>=20)
-              {
-                document.getElementById("error-display").innerText = "Password must be between 8 to 20 letters";
-                $("#error-slide").css("display", "block");
-                return (false)
-              }
-              if(/^[a-zA-Z]+$/.test(pass1))
-              {
-                document.getElementById("error-display").innerText = "Password must have atleast one number";
-                $("#error-slide").css("display", "block");
-                return (false)
-              }
-              if(/^[a-z0-9]+$/.test(pass1))
-              {
-                document.getElementById("error-display").innerText = "Password must have atleast one uppercase";
-                $("#error-slide").css("display", "block");
-                return (false)
-              }
-              if(pass1!=pass2)
-              {
-                document.getElementById("error-display").innerText = "Password entered doesn't match";
-                $("#error-slide").css("display", "block");
-                return (false)
-              }
-              document.getElementById("success-display").innerText = "Account created. Log in now !!";
-              $("#success-slide").css("display", "block");
-              loginBtn.click();
-               return false;
              }
 
       </script>
